@@ -10,14 +10,16 @@ typedef enum {
 
 
 
+//bitmask_t HMC5883L_MA_bm    =   ~(0b01100000);
+
 /**
  * Enumeration for Averaging Modes.
  */
 typedef enum {
-    HMC5883L_MA1    =  0b00000000,  // 1 sample
-    HMC5883L_MA2    =  0b00000010,  // 2 samples
-    HMC5883L_MA4    =  0b00000100,  // 4 samples
-    HMC5883L_MA8    =  0b00000110   // 8 samples
+    HMC5883L_MA1    =  0x00,  // 1 sample
+    HMC5883L_MA2    =  0x02,  // 2 samples
+    HMC5883L_MA4    =  0x04,  // 4 samples
+    HMC5883L_MA8    =  0x06   // 8 samples
 } HMC5883L_MA_t;
 
 
@@ -26,13 +28,13 @@ typedef enum {
  * Enumeration for Data Output rate
  */
 typedef enum {
-    HMC5883L_DO_0_75HZ =  0b00000000,  // 0.75 Hz
-    HMC5883L_DO_1_5HZ  =  0b00001000,  // 1.5 Hz
-    HMC5883L_DO_3HZ    =  0b00010000,  // 3 Hz
-    HMC5883L_DO_7_5HZ  =  0b00011000,  // 7.5 Hz
-    HMC5883L_DO_15HZ   =  0b00100000,  // 15 Hz
-    HMC5883L_DO_30HZ   =  0b00101000,  // 30 Hz
-    HMC5883L_DO_75HZ   =  0b00111000   // 75 Hz
+    HMC5883L_DO_0_75HZ =  0x00,  // 0.75 Hz
+    HMC5883L_DO_1_5HZ  =  0x08,  // 1.5 Hz
+    HMC5883L_DO_3HZ    =  0x10,  // 3 Hz
+    HMC5883L_DO_7_5HZ  =  0x18,  // 7.5 Hz
+    HMC5883L_DO_15HZ   =  0x20,  // 15 Hz
+    HMC5883L_DO_30HZ   =  0x28,  // 30 Hz
+    HMC5883L_DO_75HZ   =  0x38   // 75 Hz
 } HMC5883L_DO_t;
 
 
@@ -43,10 +45,10 @@ typedef enum {
  * Interesting for offset calculations
  */
 typedef enum {
-    HMC5883L_MS_S   =   0b00000000,     // Standard (Normal) mode
-    HMC5883L_MS_P   =   0b01000000,     // Positive mode
-    HMC5883L_MS_N   =   0b10000000      // Negative mode
-} HMC5883L_DO_t;
+    HMC5883L_MS_S   =   0x00,     // Standard (Normal) mode
+    HMC5883L_MS_P   =   0x40,     // Positive mode
+    HMC5883L_MS_N   =   0x80      // Negative mode
+} HMC5883L_MS_t;
 
 
 
