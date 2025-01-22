@@ -10,8 +10,6 @@ typedef enum {
 
 
 
-//bitmask_t HMC5883L_MA_bm    =   ~(0b01100000);
-
 /**
  * Enumeration for Averaging Modes.
  */
