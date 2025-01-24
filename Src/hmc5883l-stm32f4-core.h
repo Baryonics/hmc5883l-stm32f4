@@ -1,6 +1,6 @@
 #ifndef HMC5883L_STM32F4_CORE_H
 #define HMC5883L_STM32F4_CORE_H
-
+#include "stm32f4xx_hal.h"
 #include <stdint.h>
 
 #define     HMC5883L_ADDR            (0x1E)      /* HMC5883L Address */
@@ -25,9 +25,9 @@
 #define     HMC5883L_REG_IRC        (0x0C)      /* Identification Register C */
 
 
-// Control bit locations and size in register
+// Control bit locations and size in register CRA (Controll Register A)
 #define     HMC5883L_CRA_MA_P       (7-2)
-#define     HMC5993L_CRA_MA_S       (2)   
+#define     HMC5883L_CRA_MA_S       (2)   
 
 #define     HMC5883L_CRA_DO_P       (7-3)
 #define     HMC5388L_CRA_DO_S       (3)
@@ -36,8 +36,17 @@
 #define     HMC5883L_CRA_MS_S       (2)
 
 
+// Control bit locations and size in register CRA (Controll Register B)
+
+
+
 void set_register_bits(uint8_t val, uint8_t pos, uint8_t len, uint8_t *reg);
 
+
+void write_reg_cra(uint8_t *reg_buf, I2C_HandleTypeDef *hi2c);
+
+
+void set_reg_cra(HMC5883L_Reg_cra_conf_t *cra_c, uint8_t *reg_buf);
 
 #endif
 

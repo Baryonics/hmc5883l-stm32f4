@@ -1,17 +1,18 @@
 #ifndef HMC5883L5883L_STM32F4_H
 #define HMC5883L5883L_STM32F4_H
-
+#include "stm32f4xx_hal.h"
+#include <stdint.h>
 
 typedef enum {
     HMC5883L_OK = 0,
     HMC5883L_TIMEOUT = -1,
     HMC5883L_ERR = -2,
-} HMC5883L_Status;
+} HMC5883L_Status_t;
 
 
 
 /**
- * Enumeration for Averaging Modes.
+ * CRA_MA: Enumeration for Averaging Modes.
  */
 typedef enum {
     HMC5883L_MA1    =  0x00,  // 1 sample
@@ -23,7 +24,7 @@ typedef enum {
 
 
 /**
- * Enumeration for Data Output rate
+ * CRA_MA: Enumeration for Data Output rate
  */
 typedef enum {
     HMC5883L_DO_0_75HZ =  0x00,  // 0.75 Hz
@@ -37,7 +38,7 @@ typedef enum {
 
 
 /**
- * Enumeration for Measurement configuration. 
+ * CRA_MA: Enumeration for Measurement configuration. 
  * P generates a positive field on X,Y,Z Axis
  * N generates a negative field on X,Y,Z Axis
  * Interesting for offset calculations
@@ -50,7 +51,16 @@ typedef enum {
 
 
 
+typedef struct HMC5883L_Reg_cra_conf
+{
+  HMC5883L_MA_t ma_c;
+  HMC5883L_DO_t do_c;
+  HMC5883L_MS_t ms_c;   
+} HMC5883L_Reg_cra_conf_t;
 
-HMC5883L_Status HMC5883L_init();
+
+
+
+HMC5883L_Status_t HMC5883L_init(HMC5883L_Reg_cra_conf_t *cra_c, I2C_HandleTypeDef *hi2c);
 
 #endif
