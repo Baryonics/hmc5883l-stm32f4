@@ -11,14 +11,18 @@ typedef enum {
 
 
 
+/*-----------------------------
+ |  Control Register A config
+ -----------------------------*/
+
 /**
  * CRA_MA: Enumeration for Averaging Modes.
  */
 typedef enum {
-    HMC5883L_MA1    =  0x00,  // 1 sample
-    HMC5883L_MA2    =  0x02,  // 2 samples
-    HMC5883L_MA4    =  0x04,  // 4 samples
-    HMC5883L_MA8    =  0x06   // 8 samples
+    MA1    =  0x00,  // 1 sample
+    MA2    =  0x01,  // 2 samples
+    MA4    =  0x02,  // 4 samples
+    MA8    =  0x03   // 8 samples
 } HMC5883L_MA_t;
 
 
@@ -27,13 +31,13 @@ typedef enum {
  * CRA_MA: Enumeration for Data Output rate
  */
 typedef enum {
-    HMC5883L_DO_0_75HZ =  0x00,  // 0.75 Hz
-    HMC5883L_DO_1_5HZ  =  0x08,  // 1.5 Hz
-    HMC5883L_DO_3HZ    =  0x10,  // 3 Hz
-    HMC5883L_DO_7_5HZ  =  0x18,  // 7.5 Hz
-    HMC5883L_DO_15HZ   =  0x20,  // 15 Hz
-    HMC5883L_DO_30HZ   =  0x28,  // 30 Hz
-    HMC5883L_DO_75HZ   =  0x38   // 75 Hz
+    DO_0_75HZ =  0x00,  // 0.75 Hz
+    DO_1_5HZ  =  0x01,  // 1.5 Hz
+    DO_3HZ    =  0x02,  // 3 Hz
+    DO_7_5HZ  =  0x03,  // 7.5 Hz
+    DO_15HZ   =  0x04,  // 15 Hz
+    DO_30HZ   =  0x05,  // 30 Hz
+    DO_75HZ   =  0x06   // 75 Hz
 } HMC5883L_DO_t;
 
 
@@ -44,9 +48,9 @@ typedef enum {
  * Interesting for offset calculations
  */
 typedef enum {
-    HMC5883L_MS_S   =   0x00,     // Standard (Normal) mode
-    HMC5883L_MS_P   =   0x40,     // Positive mode
-    HMC5883L_MS_N   =   0x80      // Negative mode
+    MS_S   =   0x00,     // Standard (Normal) mode
+    MS_P   =   0x01,     // Positive mode
+    MS_N   =   0x03      // Negative mode
 } HMC5883L_MS_t;
 
 
@@ -60,7 +64,27 @@ typedef struct HMC5883L_Reg_cra_conf
 
 
 
+/*-----------------------------
+ |  Control Register B config
+ -----------------------------*/
 
-HMC5883L_Status_t HMC5883L_init(HMC5883L_Reg_cra_conf_t *cra_c, I2C_HandleTypeDef *hi2c);
+/**
+ * CRB_GCB: Enumeration for Gain Control Bits.
+ */
+typedef enum {
+    GCB_1370    =   0x00,   // 
+    GCB_1090    =   0x01,   // Gain 1090 default
+    GCB_820     =   0x02,   //
+    GCB_660     =   0x03,   //
+    GCB_440     =   0x04,   //
+    GCB_390     =   0x05,   //
+    GCB_330     =   0x06,   //
+    GCB_230     =   0x07    //
+} HMC5883L_GCB_t;
 
+
+
+
+
+HMC5883L_Status_t HMC5883L_init_standard(I2C_HandleTypeDef *hi2c);
 #endif
